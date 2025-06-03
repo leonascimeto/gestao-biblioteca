@@ -19,15 +19,15 @@ public class BookService {
     
     public String addBook(BookDTO dto) {
         // Verifica se o livro já existe pelo ISBN
-        if (bookRepo.findByIsbn(dto.isbn) != null) return "O livro já existe";
+        if (bookRepo.findByIsbn(dto.getIsbn()) != null) return "O livro já existe";
 
         
         Book book = new Book();
-        book.title = dto.title;
-        book.author = dto.author;
-        book.isbn = dto.isbn;
-        book.genre = dto.genero;
-        book.quantity = dto.quantity;
+        book.title = dto.getTitle();
+        book.author = dto.getAuthor();
+        book.isbn = dto.getIsbn();
+        book.genre = dto.getGenre();
+        book.quantity = dto.getQuantity();
 
         
         bookRepo.save(book);
@@ -54,11 +54,11 @@ public class BookService {
         if (book == null) return "Livro não encontrado";
 
         
-        book.title = dto.title;
-        book.author = dto.author;
-        book.isbn = dto.isbn;
-        book.genre = dto.genero;
-        book.quantity = dto.quantity;
+        book.title = dto.getTitle();
+        book.author = dto.getAuthor();
+        book.isbn = dto.getIsbn();
+        book.genre = dto.getGenre();
+        book.quantity = dto.getQuantity();
 
         
         bookRepo.save(book);
@@ -83,12 +83,12 @@ public class BookService {
     // Converte um objeto Book em um BookDTO (usado para resposta)
     private BookDTO toDTO(Book b) {
         BookDTO dto = new BookDTO();
-        dto.id = b.id;
-        dto.title = b.title;
-        dto.author = b.author;
-        dto.isbn = b.isbn;
-        dto.genero = b.genre;
-        dto.quantity = b.quantity;
+        dto.setId(b.id);
+        dto.setTitle(b.title);
+        dto.setAuthor(b.author);
+        dto.setIsbn(b.isbn);
+        dto.setGenre(b.genre);
+        dto.setQuantity(b.quantity);
         return dto;
     }
 
