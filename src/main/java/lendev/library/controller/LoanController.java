@@ -12,7 +12,7 @@ import java.util.List;
 // Controlador REST para gerenciar requisições relacionadas a empréstimos de livros
 @RestController
 @RequestMapping("/api/loans")  
-@Tag(name = "Loans", description = "Endpoints para gerenciamento de empréstimos") // Documentação Swagger/OpenAPI para agrupar os endpoints
+@Tag(name = "Loans", description = "Endpoints para gerenciamento de empréstimos") 
 public class LoanController {
 
     @Autowired
@@ -35,7 +35,7 @@ public class LoanController {
     @GetMapping
     @Operation(summary = "Listar empréstimos por status")  
     public List<LoanDTO> listLoans(@RequestParam(name = "status", required = false) String status) {
-        // Recebe parâmetro opcional 'status' para filtrar empréstimos (ex: pendente, retornou) e retorna a lista filtrada
+        
         return loanService.listLoans(status);
     }
 }

@@ -40,7 +40,7 @@ public class StudentController {
     }
 
     @DeleteMapping("/{id}")
-    @Operation(summary = "Remover aluno")  // Documenta o endpoint para remover um aluno pelo ID
+    @Operation(summary = "Remover aluno")  
     public String deleteStudent(@PathVariable Long id) {
         
         return studentService.deleteStudent(id);
