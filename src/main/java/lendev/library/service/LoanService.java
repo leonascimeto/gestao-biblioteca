@@ -25,13 +25,13 @@ public class LoanService {
     @Autowired
     private StudentRepo studentRepo;
 
-    // Realiza o empréstimo de um livro para um aluno
+    
     public String loanBook(Long studentId, Long bookId) {
         
         Student student = studentRepo.findById(studentId).orElse(null);
         Book book = bookRepo.findById(bookId).orElse(null);
 
-        // Validações de regras de negócio antes de permitir o empréstimo
+        
         if (student == null || book == null) return "Aluno ou livro não encontrado";
         if (student.penaltyCount >= 5) return "Aluno banido permanentemente";
         if (book.quantity <= 0) return "Livro indisponível";
@@ -42,7 +42,7 @@ public class LoanService {
         loan.studentId = studentId;
         loan.bookId = bookId;
         loan.loanDate = LocalDate.now();
-        loan.dueDate = LocalDate.now().plusDays(7); // Define data de devolução para 7 dias
+        loan.dueDate = LocalDate.now().plusDays(7); 
 
         
         book.quantity--;
@@ -52,7 +52,7 @@ public class LoanService {
         return "Livro emprestado";
     }
 
-    // Realiza a devolução de um livro emprestado
+    
     public String returnBook(Long loanId) {
         
         Loan loan = loanRepo.findById(loanId).orElse(null);
@@ -64,14 +64,14 @@ public class LoanService {
         loan.returnDate = LocalDate.now();
         loanRepo.save(loan);
 
-        // Atualiza a quantidade de livros disponíveis ao devolver
+        
         Book book = bookRepo.findById(loan.bookId).orElse(null);
         if (book != null) {
             book.quantity++;
             bookRepo.save(book);
         }
 
-        // Aplica penalidade se a devolução for após a data limite
+        
         if (loan.returnDate.isAfter(loan.dueDate)) {
             Student student = studentRepo.findById(loan.studentId).orElse(null);
             if (student != null) {
@@ -83,7 +83,7 @@ public class LoanService {
         return "Livro devolvido";
     }
 
-    // Lista os empréstimos de acordo com o status (pendente, retornou ou todos)
+    
     public List<LoanDTO> listLoans(String status) {
         
         List<Loan> loans = switch (status != null ? status.toLowerCase() : "") {
@@ -108,7 +108,7 @@ public class LoanService {
         return dto;
     }
 
-    // Método sobrescrito, mas ainda não implementado (para futura funcionalidade com DTO diretamente)
+    // Método sobrescrito, mas ainda não implementado no projeto(para futura funcionalidade com DTO diretamente)
     public String loanBook(LoanDTO loanDTO) {
         
         return null;

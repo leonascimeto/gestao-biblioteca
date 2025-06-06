@@ -1,6 +1,8 @@
 package lendev.library.service;
 
 import lendev.library.dto.StudentDTO;
+import lendev.library.repo.StudentRepo;
+
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -12,6 +14,8 @@ public class StudentService {
     // Simulação de repositório em memória usando uma lista (para fins de exemplo).
     
     private List<StudentDTO> students = new ArrayList<>();
+    
+	public StudentRepo studentRepo;
 
     
     public String addStudent(StudentDTO studentDTO) {
@@ -24,10 +28,9 @@ public class StudentService {
         return students;
     }
 
-    // Atualiza um aluno existente com base no índice fornecido como ID
+    
     public String updateStudent(Long id, StudentDTO studentDTO) {
-        // Verifica se o ID fornecido é válido dentro dos limites da lista
-        // OBS: Isso é apenas uma simulação — normalmente, se usaria um ID real e buscaria o aluno no banco
+        
         if (id < students.size()) {
             students.set(id.intValue(), studentDTO);
             return "Aluno atualizado com sucesso!";
@@ -35,7 +38,7 @@ public class StudentService {
         return "Aluno não encontrado.";
     }
 
-    // Remove um aluno da lista com base no índice (ID)
+    
     public String deleteStudent(Long id) {
         
         if (id < students.size()) {

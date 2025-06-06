@@ -11,7 +11,7 @@ import java.util.List;
 
 // Controlador REST para gerenciar requisições relacionadas a livros
 @RestController
-@RequestMapping("/api/books")  // Define o endpoint base para todas as rotas deste controlador
+@RequestMapping("/api/books")  
 @Tag(name = "Books", description = "Endpoints para gerenciamento de livros") 
 public class BookController {
 

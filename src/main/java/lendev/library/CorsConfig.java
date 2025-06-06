@@ -13,8 +13,8 @@ public class CorsConfig {
         return new WebMvcConfigurer() {
             @Override
             public void addCorsMappings(CorsRegistry registry) {
-                registry.addMapping("/**") // libera todas as rotas
-                        .allowedOrigins("*") // ou coloque a origem específica do seu Swagger UI
+                registry.addMapping("/**") 
+                        .allowedOrigins("*") 
                         .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS")
                         .allowedHeaders("*");
             }
