@@ -12,13 +12,13 @@ import java.util.stream.Collectors;
 @Service
 public class BookService {
 
-    // Injeta o repositório de livros para operações de persistência
+    
     @Autowired
     private BookRepo bookRepo;
 
     
     public String addBook(BookDTO dto) {
-        // Verifica se o livro já existe pelo ISBN
+        
         if (bookRepo.findByIsbn(dto.getIsbn()) != null) return "O livro já existe";
 
         
@@ -35,7 +35,7 @@ public class BookService {
         return "Livro adicionado com sucesso";
     }
 
-    // Lista todos os livros ou filtra por título (se informado)
+    
     public List<BookDTO> getBooks(String title) {
         return bookRepo.findAll().stream()
             
@@ -45,7 +45,7 @@ public class BookService {
             .collect(Collectors.toList());
     }
 
-    // Atualiza os dados de um livro existente pelo ID
+    
     public String updateBook(Long id, BookDTO dto) {
         
         Book book = bookRepo.findById(id).orElse(null);
@@ -66,7 +66,7 @@ public class BookService {
         return "Livro atualizado com sucesso";
     }
 
-    // Exclui um livro pelo ID
+    
     public String deleteBook(Long id) {
         
         Book book = bookRepo.findById(id).orElse(null);
@@ -80,7 +80,7 @@ public class BookService {
         return "Livro excluído com sucesso";
     }
 
-    // Converte um objeto Book em um BookDTO (usado para resposta)
+    
     private BookDTO toDTO(Book b) {
         BookDTO dto = new BookDTO();
         dto.setId(b.id);

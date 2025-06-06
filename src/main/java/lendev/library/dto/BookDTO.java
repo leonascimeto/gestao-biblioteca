@@ -1,7 +1,7 @@
 
 package lendev.library.dto;
 
-//Classe DTO (Data Transfer Object) usada para transferir dados do livro entre camadas da aplicação
+
 public class BookDTO {
 	private Long id;
     private String title;
@@ -10,7 +10,7 @@ public class BookDTO {
     private String genero;
     private Integer quantity;
 
-    // Getters e Setters
+    
     public Long getId() {
         return id;
     }
